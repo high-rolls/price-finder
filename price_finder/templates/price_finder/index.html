@@ -1,0 +1,25 @@
+<h1>Busca de preços</h1>
+
+<form method="get">
+  <input name="q" placeholder="Pesquisar..." />
+  <input type="submit" />
+</form>
+
+{% if products %}
+  <table>
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Preço</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+        <tr>
+          <td>{{ product.title }}</td>
+          <td>{{ product.price }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
