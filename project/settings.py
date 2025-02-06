@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-n_!m^w(q713@6xm&ay@eo9y)dv838-p73z)+7-#jxzknx#b4i(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://price-finder-f5n3.onrender.com/'
+]
 
 
 # Application definition
