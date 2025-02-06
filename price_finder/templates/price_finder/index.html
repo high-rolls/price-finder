@@ -1,25 +1,58 @@
-<h1>Busca de preços</h1>
+{% extends 'price_finder/base.html' %}
+{% block content %}
+  <nav class="navbar sticky-top bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Buscador de Preços</a>
+      <form class="d-flex" role="search" method="get">
+        <input name="q" class="form-control me-2 rounded-0" type="search" placeholder="Título do produto" aria-label="Título do produto" />
+        <button class="btn btn-primary rounded-0" type="submit">Buscar</button>
+      </form>
+    </div>
+  </nav>
 
-<form method="get">
-  <input name="q" placeholder="Pesquisar..." />
-  <input type="submit" />
-</form>
+  <div class="container py-3">
+    {% if products %}
+      <table id="products-table" class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Preço</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+            <tr>
+              <td>{{ product.title }}</td>
+              <td>{{ product.price }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+{% endblock %}
 
-{% if products %}
-  <table>
-    <thead>
-      <tr>
-        <th>Descrição</th>
-        <th>Preço</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for product in products %}
-        <tr>
-          <td>{{ product.title }}</td>
-          <td>{{ product.price }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-{% endif %}
+{% block extra_scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#products-table').dataTable({
+        language: {
+          url: 'https://cdn.datatables.net/plug-ins/2.2.1/i18n/pt-BR.json',
+          paginate: {
+            first: '<i class="fa-solid fa-angles-left"></i>',
+            previous: '<i class="fa-solid fa-angle-left"></i>',
+            next: '<i class="fa-solid fa-angle-right"></i>',
+            last: '<i class="fa-solid fa-angles-right"></i>'
+          }
+        },
+        layout: {
+          topStart: null,
+          topEnd: { search: { processing: true } },
+          bottomStart: 'info',
+          bottom: 'paging',
+          bottomEnd: 'pageLength'
+        }
+      })
+    })
+  </script>
+{% endblock %}

@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-n_!m^w(q713@6xm&ay@eo9y)dv838-p73z)+7-#jxzknx#b4i(
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
     'price-finder-f5n3.onrender.com'
 ]
 
